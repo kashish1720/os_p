@@ -1,0 +1,21 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f4f8;
+}
+.dark {
+  background-color: #1f2937;
+  color: #fff;
+}
+.weather-card {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.dark .weather-card {
+  background: #374151;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
