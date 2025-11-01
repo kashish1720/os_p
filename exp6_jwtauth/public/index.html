@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JWT Authentication Dashboard - Library System</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📚 Library Management System</h1>
+      <p class="subtitle">JWT Authentication + Role-Based Access Control Demonstration</p>
+    </header>
+
+    <!-- Authentication Section -->
+    <section class="auth-section">
+      <div class="card auth-card">
+        <h2>🔐 Authentication</h2>
+        
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="register">Register</button>
+          <button class="tab-btn" data-tab="login">Login</button>
+        </div>
+
+        <!-- Register Form -->
+        <div class="tab-content active" id="register-tab">
+          <form id="register-form">
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text" id="reg-username" placeholder="e.g. alice" required>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="reg-password" placeholder="Choose a password" required>
+            </div>
+            <div class="form-group">
+              <label>Role</label>
+              <select id="reg-role">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Account</button>
+          </form>
+          <div class="message-box" id="register-message"></div>
+        </div>
+
+        <!-- Login Form -->
+        <div class="tab-content" id="login-tab">
+          <form id="login-form">
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text" id="login-username" placeholder="e.g. alice" required>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="login-password" placeholder="Your password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+          <div class="message-box" id="login-message"></div>
+          <div class="token-actions" id="token-actions" style="display: none;">
+            <button class="btn btn-secondary" id="decode-token-btn">🔍 Decode Token</button>
+            <button class="btn btn-secondary" id="copy-token-btn">📋 Copy Token</button>
+            <button class="btn btn-danger" id="logout-btn">Logout</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard Section (Only visible when logged in) -->
+    <section class="dashboard-section" id="dashboard" style="display: none;">
+      
+      <!-- Current User Info -->
+      <div class="card info-card">
+        <h2>👤 Current User Information</h2>
+        <div class="user-info" id="current-user">
+          <p>Loading...</p>
+        </div>
+      </div>
+
+      <!-- JWT Token Breakdown -->
+      <div class="card info-card">
+        <h2>🎫 JWT Token Breakdown</h2>
+        <div class="token-info" id="token-info">
+          <p class="info-text">Login to see your JWT token structure</p>
+        </div>
+      </div>
+
+      <!-- Database: All Users (Admin Only) -->
+      <div class="card info-card admin-only" id="users-card">
+        <h2>👥 Users in Database (Admin Only)</h2>
+        <button class="btn btn-primary" id="refresh-users-btn">🔄 Refresh Users</button>
+        <div class="database-info" id="users-db">
+          <p class="info-text">Only admins can view all users</p>
+        </div>
+      </div>
+
+      <!-- Protected Routes Testing -->
+      <div class="card info-card">
+        <h2>🔒 Test Protected Routes</h2>
+        <div class="button-group">
+          <button class="btn btn-primary" id="test-user-btn">Test /api/user</button>
+          <button class="btn btn-warning" id="test-admin-btn">Test /api/admin</button>
+        </div>
+        <div class="api-response" id="api-response"></div>
+      </div>
+
+      <!-- Library Books -->
+      <div class="card info-card">
+        <h2>📖 Library Books</h2>
+        <button class="btn btn-primary" id="refresh-books-btn">🔄 Refresh Books</button>
+        <div class="books-list" id="books-list">
+          <p class="info-text">Loading books...</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Not Logged In Message -->
+    <section class="welcome-section" id="welcome">
+      <div class="card welcome-card">
+        <h2>Welcome! 👋</h2>
+        <p>Please <strong>register</strong> or <strong>login</strong> to see your dashboard and explore:</p>
+        <ul>
+          <li>✨ Your user profile information</li>
+          <li>🎫 JWT token structure and contents</li>
+          <li>👥 All users in the database (admin only)</li>
+          <li>🔒 Protected API endpoints testing</li>
+          <li>📚 Library books catalog</li>
+        </ul>
+        <div class="info-box">
+          <strong>Understanding JWT Authentication:</strong>
+          <ul>
+            <li>JWT tokens are stored in <code>localStorage</code> after login</li>
+            <li>Tokens contain user information (id, username, role)</li>
+            <li>Passwords are hashed using bcryptjs before storing</li>
+            <li>Protected routes verify the token signature</li>
+            <li>Role-based access controls who can access what</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

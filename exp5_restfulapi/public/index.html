@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Auth Demo</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="nav">
+      <div class="brand">Auth <span class="pill">Demo</span></div>
+      <div class="controls">
+        <button id="show-signup" class="button">Signup</button>
+        <button id="show-login" class="button">Login</button>
+        <button id="show-profile" class="button">Profile</button>
+        <button id="logout" class="button danger">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="messages"></div>
+
+    <div class="grid">
+      <div>
+        <div id="signup" class="card hidden">
+          <h2>Signup</h2>
+          <input id="su-username" class="input" placeholder="Username" />
+          <input id="su-email" class="input" placeholder="Email" type="email" />
+          <input id="su-password" class="input" placeholder="Password" type="password" />
+          <div class="controls">
+            <button id="do-signup" class="button primary">Create Account</button>
+          </div>
+        </div>
+
+        <div id="login" class="card hidden">
+          <h2>Login</h2>
+          <input id="li-email" class="input" placeholder="Email" type="email" />
+          <input id="li-password" class="input" placeholder="Password" type="password" />
+          <div class="controls">
+            <button id="do-login" class="button primary">Login</button>
+          </div>
+          <div class="muted">Use the same email/password you signed up with.</div>
+        </div>
+
+        <div id="profile" class="card hidden">
+          <h2>Profile</h2>
+          <pre id="profile-data">(no data)</pre>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>What is happening?</h2>
+        <div class="muted">This panel shows the request sent to the server and the server's response.</div>
+        <h3>Request</h3>
+        <pre id="req-preview">(no request yet)</pre>
+        <h3>Response</h3>
+        <pre id="res-preview">(no response yet)</pre>
+        <h3>JWT Token</h3>
+        <pre id="token-display">(not logged in)</pre>
+        <h3>Steps</h3>
+        <ol style="margin-top:0">
+          <li>Fill Signup and click Create Account → the server stores your hashed password (not the raw password).</li>
+          <li>Login → the server verifies your password and returns a signed JWT token.</li>
+          <li>Profile → the browser sends the token via Authorization header to access protected data.</li>
+        </ol>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">Built with Express, JWT, Helmet, CORS, and Bcrypt</footer>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>
